@@ -28,30 +28,31 @@ You will:
 
 ## Task 1. Identify Network Interfaces
 
-Task 1. Identify network interfaces that can be used to capture network packet data
+**Task 1.** Identify network interfaces that can be used to capture network packet data
 
 <img width="873" height="513" alt="Identify Network Interfaces" src="https://github.com/user-attachments/assets/0cca25a7-234e-49ef-84f2-e271fb7f1ecc" />
 
-Description:
+**Description:**
 Displays the current network interface configuration, including IP addresses, netmasks, MAC addresses, and status for each interface (such as eth0 and lo).
 
-Function:
+**Function:**
 This command helps identify which network interfaces exist on the Linux VM and see their basic settings so you can choose the correct interface for packet capture.
 
-Benefit:
+**Benefit:**
 Ensures you target the right interface (for example, eth0 instead of the loopback lo) when capturing traffic, reducing mistakes and helping you focus on real network traffic instead of irrelevant local-only traffic.
 
-Task 1.1 Identify interface options available for packet capture
+**Task 1.1** Identify interface options available for packet capture
 
 <img width="873" height="320" alt="Interface options" src="https://github.com/user-attachments/assets/907db1ec-a363-4d3f-874d-a4a06c4d4519" />
 
-Description
+**Description**
 Lists all network interfaces that tcpdump can capture from, along with an index number for each.
+
 ​
-Function
+**Function**
 Provides a tcpdump‑aware view of available capture interfaces, which can be useful on systems where ifconfig is unavailable or when you want to reference interfaces by index.
 
-Benefit
+**Benefit**
 Ensures tcpdump is pointed at a valid interface, preventing errors and making it easier to script or automate captures across different systems and environments.
 
 ---
