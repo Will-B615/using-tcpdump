@@ -45,49 +45,49 @@ Ensures you target the right interface (for example, eth0 instead of the loopbac
 
 <img width="873" height="320" alt="Interface options" src="https://github.com/user-attachments/assets/907db1ec-a363-4d3f-874d-a4a06c4d4519" />
 
-**Description**
+**Description:**
 Lists all network interfaces that tcpdump can capture from, along with an index number for each.
 
 ​
-**Function**
+**Function:**
 Provides a tcpdump‑aware view of available capture interfaces, which can be useful on systems where ifconfig is unavailable or when you want to reference interfaces by index.
 
-**Benefit**
+**Benefit:**
 Ensures tcpdump is pointed at a valid interface, preventing errors and making it easier to script or automate captures across different systems and environments.
 
 ---
 
 ## Task 2. Inspect network traffic of a network interface with tcpdump
 
-Task 2. Use tcpdump to filter live network packet traffic on an interface
+**Task 2.** Use tcpdump to filter live network packet traffic on an interface
 
 <img width="878" height="707" alt="Live network packet data pt1" src="https://github.com/user-attachments/assets/6725f785-f969-4555-b4cc-069a0b6349f5" />
 
-Description
+**Description:**
 Captures 5 packets of live traffic on interface eth0 and prints a verbose, human‑readable description of each packet to the terminal.
 
-Function
+**Function:**
 -i eth0: Listens specifically on the eth0 network interface.
 
 -v: Shows additional header details (TTL, flags, lengths, etc.).
 
 -c5: Stops automatically after 5 packets have been captured.
 
-Benefit
+**Benefit:**
 Provides a quick “snapshot” of live traffic on a specific interface, allowing you to confirm that packets are flowing, inspect key header fields, and spot unusual behavior without generating large amounts of data.
 
 ---
 
 ## Task 3. Capture network traffic with tcpdump
 
-Task 3. Use tcpdump to save captured netword data to a packet capture file
+**Task 3.** Use tcpdump to save captured netword data to a packet capture file
 
 <img width="887" height="102" alt="Capture web traffic" src="https://github.com/user-attachments/assets/321883a3-adf7-412d-8958-12059852feae" />
 
-Description
+**Description:**
 Captures 9 packets of HTTP (TCP port 80) traffic on eth0, does not resolve hostnames or service names, saves the packets to capture.pcap, and runs in the background.
 
-Function
+**Function:**
 -i eth0: Capture only on the eth0 interface.
 
 -nn: Disable DNS and service‑name lookups, keeping IPs and ports numeric.
@@ -100,40 +100,40 @@ port 80: Filter to only packets whose source or destination port is 80.
 
 &: Run the capture in the background so the shell prompt remains usable.
 
-Benefit
+**Benefit:**
 Produces a focused pcap file containing just HTTP traffic, which is small, shareable, and easy to analyze later in tools like Wireshark—ideal for troubleshooting, training, or documenting evidence during investigations.
 
-Task 3.1 Use curl to generate some HTTP (port 80) traffic:
+**Task 3.1** Use curl to generate some HTTP (port 80) traffic:
 
 <img width="880" height="257" alt="curl generated HTTP traffic" src="https://github.com/user-attachments/assets/30e83431-bd16-4375-8920-b7ef41554813" />
 
-Description
+**Description:**
 Uses curl (a command‑line HTTP client) to send a web request to opensource.google.com and print the response to the terminal.
 
-Function
+**Function:**
 Generates real HTTP (TCP port 80 or 443, depending on URL/protocol) traffic from the VM to a remote web server, which can then be observed or captured by tcpdump.
 
-Benefit
+**Benefit:**
 Gives you a predictable stream of web traffic on demand, making it easy to create test traffic for captures and confirm that filters, interfaces, and capture commands are working correctly.
 
-Task 3.2 Verify captured packet data
+**Task 3.2** Verify captured packet data
 
 <img width="723" height="51" alt="verify packet data capture" src="https://github.com/user-attachments/assets/e2566152-b9b3-46cf-9fd9-afb35112bc4d" />
 
-Description
+**Description:**
 Lists capture.pcap in long format, showing its size, permissions, timestamps, and ownership.
 
-Function
+**Function:**
 Verifies that the pcap file was created and contains data (non‑zero size) after a tcpdump capture run.
 
-Benefit
+**Benefit:**
 Provides quick confirmation that the capture completed successfully and that you have a file ready for further analysis, preventing time wasted trying to read or analyze a file that was never created.
 
 ---
 
 ## Task 4. Filter the captured packet data
 
-Task 4. Use tcpdump to filter data from the previously saved packet capture file
+**Task 4.** Use tcpdump to filter data from the previously saved packet capture file
 
 <img width="875" height="628" alt="Filter packet header pt1" src="https://github.com/user-attachments/assets/5397f559-4de8-44ff-9599-9a23ce57d771" />
 
@@ -141,20 +141,20 @@ Task 4. Use tcpdump to filter data from the previously saved packet capture file
 
 <img width="882" height="75" alt="Filter packet header pt3" src="https://github.com/user-attachments/assets/6d45f039-deef-4c16-a516-daa9999e6357" />
 
-Description
+**Description:**
 Reads packets from the existing capture.pcap file instead of from the network and prints verbose, numeric header information for each packet.
 
-Function
+**Function:**
 -nn: Keep IP addresses and ports numeric (no lookups).
 
 -r capture.pcap: Read packets from the pcap file.
 
 -v: Show extra header details for each packet.
 
-Benefit
+**Benefit:**
 Allows you to review captured traffic offline without affecting the live system, making it easier to analyze flows, flags, and header fields carefully at your own pace—useful for incident review, reporting, and knowledge sharing.
 
-Task 4.1 Use the tcpdump command to filter the extended packet data from the capture.pcap capture file:
+**Task 4.1** Use the tcpdump command to filter the extended packet data from the capture.pcap capture file:
 
 <img width="873" height="696" alt="Filter extended packet data pt1" src="https://github.com/user-attachments/assets/e6e840ad-5ec6-4521-ba77-a36749b5089b" />
 
@@ -164,17 +164,17 @@ Task 4.1 Use the tcpdump command to filter the extended packet data from the cap
 
 <img width="872" height="352" alt="Filter extended packet data pt4" src="https://github.com/user-attachments/assets/b54cec63-eab1-49c3-bb73-7c3c51cc307d" />
 
-Description
+**Description:**
 Reads packets from capture.pcap and prints both hex and ASCII representations of packet contents, with numeric addresses and ports.
 
-Function
+**Function:**
 -nn: Disable name lookups.
 
 -r capture.pcap: Read from an existing pcap file.
 
 -X: Show packet data in hex plus ASCII side‑by‑side.
 
-Benefit
+**Benefit:**
 Exposes the actual payload of packets, enabling you to spot strings, protocol details, or suspicious patterns (for example, credentials, commands, or malware signatures), which is critical for deep forensics and malware analysis.
 
 ---
